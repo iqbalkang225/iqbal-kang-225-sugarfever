@@ -1,0 +1,51 @@
+  <!-- Html Head -->
+  <%- include('../partials/head') %>
+  <link rel="stylesheet" href="/css/admin.css">
+    </head>
+  <!-- End of Html Head -->
+
+  <body>
+    <!-- Navigation -->
+    <%- include('../partials/navigation') %>
+
+    <!-- Main Content -->
+    <main>
+      <section class="add-product">
+        <div class="container add-product__container">
+
+          <!-- Side Decor -->
+          <div class="add-product__side">
+
+          </div>
+          <!-- End of Side Decor -->
+
+          <!-- Add product form -->
+          <form action="/admin/add-product" method="post" class="add-product__form">
+            <div class="form-control">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" />
+            </div>
+            <div class="form-control">
+              <label for="image">Image Url</label>
+              <input type="text" name="image" id="image" />
+            </div>
+            <div class="form-control">
+              <label for="price">Price</label>
+              <input type="number" name="price" id="price" step="0.01" />
+            </div>
+            <div class="form-control">
+              <label for="description">Description</label>
+              <textarea rows="10" name="description" id="description"></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn">Add Product</button>
+            </div>
+          </form>
+          <!-- End of add product form -->
+        </div>
+      </section>
+    </main>
+    <!-- End of Main Content -->
+
+  </body>
+</html>

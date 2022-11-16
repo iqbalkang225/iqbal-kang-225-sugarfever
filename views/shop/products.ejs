@@ -1,0 +1,89 @@
+  <!-- Html Head -->
+  <%- include('../partials/head') %>
+  <link rel="stylesheet" href="/css/shop.css">
+    </head>
+  <!-- End of Html Head -->
+  <body>
+    <!-- Navigation -->
+    <%- include('../partials/navigation') %>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Products Section -->
+      <section class="products">
+        <div class="container products__container">
+          <% if(products.length === 0) { %>
+            <h1>No products Avaialbe</h1>
+          <% } else { %>
+            <!-- Product Card -->
+            <% products.forEach(product => {%>
+              <div class="card">
+                <img class="card__image" src="<%= product.image %>" alt="<%= product.name %>" />
+                <div class="card__info">
+                  <div class="card__header">
+                    <span class="card__name"> <%= product.name %> </span>
+                    <span class="card__price">$<%= product.price %> </span>
+                  </div>
+                  <p class="card__description"> <%= product.description %> </p>
+                </div>
+                <form action="" method="post">
+                  <button class="btn">Add to cart</button>
+                </form>
+              </div>
+            <% }) %>
+
+
+
+            <div class="card">
+              <img class="card__image" src="https://target.scene7.com/is/image/Target/GUEST_864b268a-2c31-46ea-9dba-0dd6f3bc88ff" />
+              <div class="card__info">
+                <div class="card__header">
+                  <span class="card__name">Camera</span>
+                  <span class="card__price">$30</span>
+                </div>
+                <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, earum tempora ea natus autem praesentium minus distinctio nobis voluptatibus! Maiores!</p>
+              </div>
+              <form action="" method="post">
+                <button class="btn">Add to cart</button>
+              </form>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src="https://target.scene7.com/is/image/Target/GUEST_864b268a-2c31-46ea-9dba-0dd6f3bc88ff" />
+              <div class="card__info">
+                <div class="card__header">
+                  <span class="card__name">Camera</span>
+                  <span class="card__price">$30</span>
+                </div>
+                <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, earum tempora ea natus autem praesentium minus distinctio nobis voluptatibus! Maiores!</p>
+              </div>
+              <form action="" method="post">
+                <button class="btn">Add to cart</button>
+              </form>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src="https://target.scene7.com/is/image/Target/GUEST_864b268a-2c31-46ea-9dba-0dd6f3bc88ff" />
+              <div class="card__info">
+                <div class="card__header">
+                  <span class="card__name">Camera</span>
+                  <span class="card__price">$30</span>
+                </div>
+                <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, earum tempora ea natus autem praesentium minus distinctio nobis voluptatibus! Maiores!</p>
+              </div>
+              <form action="" method="post">
+                <button class="btn">Add to cart</button>
+              </form>
+            </div>
+
+
+            <!-- End of Product Card -->
+          <% } %>
+        </div>
+      </section>
+      <!-- End of Products Section -->
+    </main>
+    <!-- End of Main Content -->
+
+  </body>
+</html>
