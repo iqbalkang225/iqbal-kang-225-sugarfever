@@ -20,25 +20,34 @@
           <!-- End of Side Decor -->
 
           <!-- Add product form -->
-          <form action="/admin/add-product" method="post" class="add-product__form">
+          <form action="/admin/<%= action %>" method="post" class="add-product__form">
             <div class="form-control">
               <label for="name">Name</label>
-              <input type="text" name="name" id="name" />
+              <input 
+                type="text" name="name" id="name"
+                value="<% if(isEditing) { %> <%= product.name %> <% } %>" />
             </div>
             <div class="form-control">
               <label for="image">Image Url</label>
-              <input type="text" name="image" id="image" />
+              <input
+                type="text" name="image" id="image"
+                value="<% if(isEditing) { %> <%= product.image %> <% } %>" />
             </div>
             <div class="form-control">
               <label for="price">Price</label>
-              <input type="number" name="price" id="price" step="0.01" />
+              <input
+                type="text" name="price" id="price" step="0.01"
+                value="<% if(isEditing) { %> <%= product.price %> <% } %>" />
             </div>
             <div class="form-control">
               <label for="description">Description</label>
-              <textarea rows="10" name="description" id="description"></textarea>
+              <textarea rows="10" name="description" id="description"><% if(isEditing) { %><%= product.description %><% } %></textarea>
             </div>
             <div class="form-actions">
-              <button class="btn">Add Product</button>
+              <button class="btn"><%= buttonCaption %></button>
+              <% if(isEditing) { %>
+                <input type="hidden" name="productId" value="<%= productId %>"
+              <% } %>
             </div>
           </form>
           <!-- End of add product form -->

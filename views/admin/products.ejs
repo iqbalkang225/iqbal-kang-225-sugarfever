@@ -27,9 +27,12 @@
                   <p class="card__description"> <%= product.description %> </p>
                 </div>
                 <div class="form__actions card__actions">
-                  <a href="/products/<%= product.id %>" class="btn">Details</a>
-                  <%- include('../partials/add-to-cart', {product}) %>
+                  <a href="/admin/edit-products/<%= product.id %>?editing=true" class="btn">Edit</a>
+                  <form>
+                    <button class="btn">Delete</button>
+                  </form>
                 </div>
+
               </div>
             <% }) %>
 

@@ -76,6 +76,16 @@ img{
   transition: all 0.2s ease-in-out;
 }
 
+.nav__link.active{
+  color: tomato;
+}
+
+.form__actions{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
 .btn{
   border: none;
   background: tomato;
@@ -86,6 +96,13 @@ img{
   transition: all 0.2s ease-in-out;
   width: 100%;
   border: 1px solid tomato;
+  text-align: center;
+  font-size: inherit;
+  height: 100%;
+}
+
+.card__actions{
+  padding: 0 2rem;
 }
 
 .btn:hover{

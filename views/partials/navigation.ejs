@@ -3,29 +3,29 @@
       <!-- Logo -->
       <div class="logo">
         <a href="/">
-          <h1>Sugar<span class="logo__span">Fever</span></h1>
+          <h1>Sugar<span class="logo__span">fever</span></h1>
         </a>
       </div>
       <!-- Navbar -->
       <nav class="nav">
         <ul class="nav__list">
           <li class="nav__item">
-            <a href="/" class="nav__link">Home</a>
+            <a href="/" class="nav__link <%= path === '/' ? 'active' : '' %> ">Home</a>
           </li>
           <li class="nav__item">
-            <a href="/products" class="nav__link">Products</a>
+            <a href="/products" class="nav__link <%= path === '/products' ? 'active' : '' %> ">Products</a>
           </li>
           <li class="nav__item">
-            <a href="/cart" class="nav__link">Cart</a>
+            <a href="/cart" class="nav__link <%= path === '/cart' ? 'active' : '' %> ">Cart</a>
           </li>
           <li class="nav__item">
-            <a href="/orders" class="nav__link">Orders</a>
+            <a href="/orders" class="nav__link <%= path === '/orders' ? 'active' : '' %> ">Orders</a>
           </li>
           <li class="nav__item">
-            <a href="/admin/add-product" class="nav__link">Add Product</a>
+            <a href="/admin/add-product" class="nav__link <%= path === '/admin/add-product' ? 'active' : '' %> ">Add Product</a>
           </li>
           <li class="nav__item">
-            <a href="admin/admin-products" class="nav__link">Admin Products</a>
+            <a href="/admin/products" class="nav__link <%= path === '/admin/products' ? 'active' : '' %> ">Admin Products</a>
           </li>
         </ul>
       </nav>
