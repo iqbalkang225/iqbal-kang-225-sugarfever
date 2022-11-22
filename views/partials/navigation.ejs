@@ -9,24 +9,44 @@
       <!-- Navbar -->
       <nav class="nav">
         <ul class="nav__list">
-          <li class="nav__item">
-            <a href="/" class="nav__link <%= path === '/' ? 'active' : '' %> ">Home</a>
-          </li>
-          <li class="nav__item">
-            <a href="/products" class="nav__link <%= path === '/products' ? 'active' : '' %> ">Products</a>
-          </li>
-          <li class="nav__item">
-            <a href="/cart" class="nav__link <%= path === '/cart' ? 'active' : '' %> ">Cart</a>
-          </li>
-          <li class="nav__item">
-            <a href="/orders" class="nav__link <%= path === '/orders' ? 'active' : '' %> ">Orders</a>
-          </li>
-          <li class="nav__item">
-            <a href="/admin/add-product" class="nav__link <%= path === '/admin/add-product' ? 'active' : '' %> ">Add Product</a>
-          </li>
-          <li class="nav__item">
-            <a href="/admin/products" class="nav__link <%= path === '/admin/products' ? 'active' : '' %> ">Admin Products</a>
-          </li>
+          <!-- Nav Links -->
+          <div class="nav__links">
+            <li class="nav__item">
+              <a href="/" class="nav__link <%= path === '/' ? 'active' : '' %> ">Home</a>
+            </li>
+            <li class="nav__item">
+              <a href="/products" class="nav__link <%= path === '/products' ? 'active' : '' %> ">Products</a>
+            </li>
+            <% if(isSignedIn) { %>
+              <li class="nav__item">
+                <a href="/cart" class="nav__link <%= path === '/cart' ? 'active' : '' %> ">Cart</a>
+              </li>
+              <li class="nav__item">
+                <a href="/orders" class="nav__link <%= path === '/orders' ? 'active' : '' %> ">Orders</a>
+              </li>
+              <li class="nav__item">
+                <a href="/admin/add-product" class="nav__link <%= path === '/admin/add-product' ? 'active' : '' %> ">Add Product</a>
+              </li>
+              <li class="nav__item">
+                <a href="/admin/products" class="nav__link <%= path === '/admin/products' ? 'active' : '' %> ">Admin Products</a>
+              </li>
+            <% } %>
+
+            <% if(!isSignedIn) { %>
+              <li class="nav__item">
+                <a href="/signin" class="nav__link <%= path === '/signin' ? 'active' : '' %> ">Sign In</a>
+              </li>
+              <li class="nav__item">
+                <a href="/signup" class="nav__link <%= path === '/signup' ? 'active' : '' %> ">Sign Up</a>
+              </li>
+              <% } else { %>
+                <li class="nav__item">
+                  <form action="/signout" method="post">
+                    <button class="nav__link btn--link "> Sign Out </button> 
+                  </form>
+                </li>
+              <% } %>      
+          </div>
         </ul>
       </nav>
       <!-- End of Navbar -->

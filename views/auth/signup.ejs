@@ -1,0 +1,54 @@
+  <!-- Html Head -->
+  <%- include('../partials/head') %>
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="/css/auth.css">
+    </head>
+  <!-- End of Html Head -->
+
+  <body>
+    <!-- Navigation -->
+    <%- include('../partials/navigation') %>
+
+    <!-- Main Content -->
+    <main>
+      <section class="signup">
+        <div class="container signup__container">
+
+          <h2 class="signup__title">Sign Up</h2>
+
+          <!-- Sign up form -->
+          <form action="/signup" method="post">
+            <div class="form-control">
+              <label for="name">Name</label>
+              <input 
+                type="text" name="name" id="name" />
+            </div>
+            <div class="form-control">
+              <label for="email">Email</label>
+              <input
+                type="text" name="email" id="email" />
+              <% if (error) { %> <span class="error"> <%= error %> </span> <% } %>
+            </div>
+            <div class="form-control">
+              <label for="password">Password</label>
+              <input
+                type="password" name="password" id="password" />
+            </div>
+            <div class="form-control">
+              <label for="confirmPassword">Confirm Password</label>
+              <input
+                type="password" name="confirmPassword" id="confirmPassword" />
+            </div>
+         
+            <div class="form-actions">
+              <button class="btn">Signup</button>
+            </div>
+          </form>
+          <!-- End of signup form -->
+        </div>
+      </section>
+    </main>
+    <!-- End of Main Content -->
+
+  </body>
+</html>

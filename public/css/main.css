@@ -48,11 +48,23 @@ img{
 
 .nav__list{
   display: flex;
+  justify-content: space-between;
+}
+
+.nav__links{
+  display: flex;
+}
+
+.nav__item{
+  margin-right: 4rem;
 }
 
 .nav__link{
-  margin-right: 4rem;
   position: relative;
+}
+
+.nav__item:last-child{
+  margin-right: 0rem;
 }
 
 .nav__link::after{
@@ -101,6 +113,14 @@ img{
   height: 100%;
 }
 
+.btn--link{
+  background: none;
+  font-size: inherit;
+  color: inherit;
+  outline: none;
+  border: none;
+}
+
 .card__actions{
   padding: 0 2rem;
 }
@@ -108,4 +128,22 @@ img{
 .btn:hover{
   background: transparent;
   color: tomato;
+}
+
+.error{
+  color: red;
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
+}
+
+.index__container{
+  display: flex;
+  justify-content: center;
+}
+
+.get404{
+  width: 70%;
+  height: 600px;
+  object-fit: cover;
+  opacity: 0.7;
 }

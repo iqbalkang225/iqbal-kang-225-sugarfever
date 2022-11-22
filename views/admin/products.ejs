@@ -28,7 +28,7 @@
                 </div>
                 <div class="form__actions card__actions">
                   <a href="/admin/edit-products/<%= product.id %>?editing=true" class="btn">Edit</a>
-                  <form>
+                  <form action='/admin/products/<%= product.id %>' method="post">
                     <button class="btn">Delete</button>
                   </form>
                 </div>
@@ -39,6 +39,10 @@
             <!-- End of Product Card -->
           <% } %>
         </div>
+
+        <!-- pagination -->
+        <%- include('../partials/pagination') %>
+
       </section>
       <!-- End of Products Section -->
     </main>

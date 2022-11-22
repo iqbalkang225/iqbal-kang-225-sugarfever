@@ -1,0 +1,44 @@
+  <!-- Html Head -->
+  <%- include('../partials/head') %>
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="/css/auth.css">
+    </head>
+  <!-- End of Html Head -->
+
+  <body>
+    <!-- Navigation -->
+    <%- include('../partials/navigation') %>
+
+    <!-- Main Content -->
+    <main>
+      <section class="signin">
+        <div class="container signin__container">
+
+          <h2 class="signin__title">Sign In</h2>
+
+          <!-- Sign in form -->
+          <form action="/signin" method="post">
+            <div class="form-control">
+              <label for="email">Email</label>
+              <input
+                type="text" name="email" id="email" />
+                <% if (error) { %> <span class="error"> <%= error %> </span> <% } %>
+            </div>
+            <div class="form-control">
+              <label for="password">Password</label>
+              <input
+                type="password" name="password" id="password" />
+                <% if (passwordError) { %> <span class="error"> <%= passwordError %> </span> <% } %>
+            </div>         
+            <div class="form-actions">
+              <button class="btn">SignIn</button>
+            </div>
+          </form>
+          <!-- End of signin form -->
+        </div>
+      </section>
+    </main>
+    <!-- End of Main Content -->
+
+  </body>
+</html>

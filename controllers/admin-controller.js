@@ -1,4 +1,6 @@
-const { Product } = require("../models/product-model")
+const Product = require('../models/product-model')
+
+const ITEMS_PER_PAGE = 3
 
 const getAddProduct = (req, res) => {
   res.render('admin/add-product', {
@@ -10,10 +12,34 @@ const getAddProduct = (req, res) => {
   })
 }
 
+const postDeleteProduct = async (req, res) => {
+  const productId = req.params.id
+  await Product.findByIdAndRemove(productId)
+  res.redirect('/admin/products')
+  
+}
+
+const getProducts = async (req, res) => {
+  const page = +req.query.page
+
+  const totalProducts = await Product.find().countDocuments()
+  const products = await Product.find().skip((page - 1) * ITEMS_PER_PAGE).limit(ITEMS_PER_PAGE)
+
+  res.render('shop/products', {
+    path: '/admin/products',
+    pageTitle: 'Admin Products',
+    totalPages: Math.ceil(totalProducts / ITEMS_PER_PAGE),
+    currentPage: page,
+    products,
+    totalProducts,
+
+  })
+}
+
 const postAddProduct = (req, res) => {
   const { name, image, price, description } = req.body
 
-  const product = new Product(name, image, +price, description)
+  const product = new Product({name, image, price, description, userId: req.user})
   product.save()
 
   res.redirect('/admin/add-product')
@@ -22,7 +48,7 @@ const postAddProduct = (req, res) => {
 const getEditProduct = async (req, res) => {
   const isEditing = req.query.editing
   const productId = req.params.productId
-  const product = await Product.fetchProductDetails(productId)
+  const product = await Product.findById(productId)
 
   res.render('admin/add-product', {
     path: '/admin/add-product',
@@ -38,23 +64,16 @@ const getEditProduct = async (req, res) => {
 const postEditProduct = async (req,res) => {
   const { name, image, price, description, productId } = req.body
 
-  const products = await Product.fetchAll()
+  const product = await Product.findById(productId)
 
-  const productIndex = products.findIndex(product => product.id === +productId)
+  product.name = name
+  product.image = image
+  product.price = price
+  product.description = description
 
-  const product = new Product(name, image, +price, description)
-  product.save(true, productIndex)
-  
+  await product.save()
   res.redirect('/admin/products')
 
-}
-
-const getProducts = async (req, res) => {
-  res.render('admin/products', {
-    products: await Product.fetchAll(),
-    path: '/admin/products',
-    pageTitle: 'Admin Products'
-  })
 }
 
 module.exports = {
@@ -62,5 +81,6 @@ module.exports = {
   postAddProduct,
   getEditProduct,
   postEditProduct,
-  getProducts
+  getProducts,
+  postDeleteProduct
 }

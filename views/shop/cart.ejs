@@ -1,17 +1,33 @@
   <!-- Html Head -->
   <%- include('../partials/head') %>
+  <link rel="stylesheet" href="/css/shop.css">
     </head>
   <!-- End of Html Head -->
   <body>
     <!-- Navigation -->
     <%- include('../partials/navigation') %>
 
+
     <!-- Main Content -->
     <main>
       <!-- Hero Section -->
       <section class="hero">
-        <div class="container">
-          Cart
+        <div class="container cart__container">
+          <h2 class="cart__title">Your Cart</h2>
+          <div>
+
+            <% products.forEach(product => { %>
+              <div class="cart-product">
+                <p class="cart-product__title"> <%= product.productId.name %> </p>
+                <p class="cart-product__quantity">Quantity: <%= product.quantity %> </p>
+                <form action="/delete-cart" method="post">
+                  <button class="btn">Delete</button>
+                </form>
+              </div>
+            <% }) %>
+
+          </div>
+
         </div>
       </section>
       <!-- End of Hero Section -->

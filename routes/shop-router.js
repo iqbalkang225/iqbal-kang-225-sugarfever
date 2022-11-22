@@ -8,7 +8,7 @@ router.get('/', getHomePage)
 
 router.get('/products', getProducts)
 
-router.get('/products/:productId', getProductDetails)
+router.get('/products/:id', getProductDetails)
 
 router.get('/cart', getCart)
 

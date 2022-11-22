@@ -51,3 +51,60 @@
 .card__description{
   margin-bottom: 2rem;
 }
+
+.cart__container{
+  max-width: 600px;
+  background-color: #fff;
+  padding: 2rem;
+  box-shadow: 0px 10px 10px rgba(255,255,255,0.2);
+}
+
+.cart-product{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0rem;
+  border-bottom: 1px solid tomato;
+}
+
+.cart-product__title{
+  width: 100px;
+}
+
+.cart__title{
+  text-align: center;
+}
+
+.cart__title{
+  color: tomato;
+  margin-bottom: 2rem;
+}
+
+.cart-product__title,
+.cart-product__quantity{
+  text-transform: capitalize;
+  color: #000
+}
+
+.pagination {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination a {
+  margin-right: 2rem;
+  border: 1px solid tomato;
+  padding: 0.5rem 1rem;
+}
+
+.pagination a:hover,
+.pagination a.active{
+  color: tomato;
+}
+
+.message{
+  background-color: red;
+  width: 400px;
+  height: 400px;
+}
