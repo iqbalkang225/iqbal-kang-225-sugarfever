@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoDBSession = require('connect-mongodb-session')(session)
 const flashError = require('connect-flash')
+const multer = require('multer')
 
 const shopRoutes = require('./routes/shop-router')
 const adminRoutes = require('./routes/admin-router')
@@ -49,8 +50,31 @@ app.use((req, res, next) => {
   next()
 })
 
+// File upload
+const storage = multer.diskStorage({
+  destination:  (req, file, cb) => {
+    cb(null, 'public/images')
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, uniqueSuffix + '-' + file.fieldname)
+  }
+})
+
+const fileFilter = (req, file, cb) => {
+  if(
+       file.mimetype === 'image/png'
+    || file.mimetype === 'image/jpg'
+    || file.mimetype === 'image/jpeg') {
+      cb(null, true)
+    } else {
+      cb(null, false)
+    }
+}
+
 // Parsing request and serving Static files middleware
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(multer({ storage: storage, fileFilter: fileFilter }).single('image'))
 app.use(express.static('public'))
 
 // Routes Middlewares

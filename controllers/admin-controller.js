@@ -37,7 +37,11 @@ const getProducts = async (req, res) => {
 }
 
 const postAddProduct = (req, res) => {
-  const { name, image, price, description } = req.body
+  const { name, price, description } = req.body
+
+  const image = req.file.path
+
+  console.log(image)
 
   const product = new Product({name, image, price, description, userId: req.user})
   product.save()

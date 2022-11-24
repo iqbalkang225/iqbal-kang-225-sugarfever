@@ -20,7 +20,7 @@
           <!-- End of Side Decor -->
 
           <!-- Add product form -->
-          <form action="/admin/<%= action %>" method="post" class="add-product__form">
+          <form action="/admin/<%= action %>" method="post" enctype="multipart/form-data" class="add-product__form">
             <div class="form-control">
               <label for="name">Name</label>
               <input 
@@ -28,10 +28,9 @@
                 value="<% if(isEditing) { %> <%= product.name %> <% } %>" />
             </div>
             <div class="form-control">
-              <label for="image">Image Url</label>
+              <label for="image">Upload Image</label>
               <input
-                type="text" name="image" id="image"
-                value="<% if(isEditing) { %> <%= product.image %> <% } %>" />
+                type="file" name="image" id="image" />
             </div>
             <div class="form-control">
               <label for="price">Price</label>

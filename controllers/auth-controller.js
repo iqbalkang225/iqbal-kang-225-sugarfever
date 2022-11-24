@@ -1,16 +1,41 @@
 const User = require("../models/user-model")
 const bcrypt = require('bcryptjs')
+const { validationResult } = require('express-validator')
 
 const getSignUp = (req, res) => {
   res.render('auth/signup', {
     path: '/signup',
     pageTitle: 'Sign Up',
-    error: req.flash('error')
+    errors: req.flash('error'),
+    oldInputs: {name: '', email: '', password: '', confirmPassword: ''}
   })
 }
 
 const postSignUp = async (req, res) => {
   const { name, email, password, confirmPassword } = req.body
+
+  const errors = validationResult(req)
+  let nameError, emailError, passwordError, confirmPasswordError
+  errors.array().forEach(error => {
+    if(error.param === 'name') nameError = error.msg
+    if(error.param === 'email') emailError = error.msg
+    if(error.param === 'password') passwordError = error.msg
+    if(error.param === 'confirmPassword') confirmPasswordError = error.msg
+  })
+
+  if(!errors.isEmpty()) {
+    return res.render('auth/signup', {
+      path: '/signup',
+      pageTitle: 'Sign Up',
+      errors: {
+        name: nameError,
+        email: emailError,
+        password: passwordError,
+        confirmPassword: confirmPasswordError,
+      },
+      oldInputs: {name, email, password, confirmPassword}
+    })
+  }
 
   const user = await User.findOne( {email: email} )
   if(user) {
@@ -30,11 +55,26 @@ const getSignIn = (req, res) => {
     path: '/signin',
     pageTitle: 'Sign In',
     error: req.flash('error'),
-    passwordError: req.flash('passwordError')
+    passwordError: req.flash('passwordError'),
+    oldInputs: { email: '', password: '' }
   })
 }
 
 const postSignIn = async (req, res) => {
+  const { email, password } = req.body
+
+  const errors = validationResult(req)
+  
+  if(!errors.isEmpty()) {
+    return res.render('auth/signin', {
+      path: '/signin',
+      pageTitle: 'Sign In',
+      error: errors.array()[0].msg,
+      passwordError: req.flash('passwordError'),
+      oldInputs: { email, password }
+    })
+  }
+
   const user = await User.findOne({ email: req.body.email })
   if(!user) {
     req.flash('error', "Email does not exist")

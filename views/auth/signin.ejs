@@ -21,7 +21,8 @@
             <div class="form-control">
               <label for="email">Email</label>
               <input
-                type="text" name="email" id="email" />
+                type="text" name="email" id="email"
+                value = "<%= oldInputs.email ? oldInputs.email : '' %>" />
                 <% if (error) { %> <span class="error"> <%= error %> </span> <% } %>
             </div>
             <div class="form-control">
